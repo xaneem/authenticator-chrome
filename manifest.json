@@ -1,0 +1,27 @@
+{
+  "manifest_version": 2,
+
+  "name": "Authenticator",
+  "description": "This extension lets you authenticate your connection with username and password. Built for use in NIT Calicut.",
+  "version": "0.1",
+
+  "permissions": [
+    "tabs",
+    "activeTab",
+
+    "storage",
+    "https://192.168.67.1:1003/",
+    "http://www.example.com/"
+  ],  
+  "content_scripts": [ {
+          "js": [ "main.js" , "authenticate.js" , "jquery.js" ],
+          "matches": [ "https://192.168.67.1:1003/*", "http://www.example.com/*" ]    
+      } ],
+
+  "web_accessible_resources": ["main.js", "authenticate.js", "jquery.js"],
+
+  "browser_action": {
+    "default_icon": "icon.png",
+    "default_popup": "authenticate.html"
+  }
+}
