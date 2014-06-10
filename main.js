@@ -36,6 +36,8 @@ $(function() {
 
     $('#authenticate').on('click', function(event) {
         event.preventDefault();
+        
+        saveChanges();
 
         chrome.tabs.executeScript(null, {
             file: "jquery.js"

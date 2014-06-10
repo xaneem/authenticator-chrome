@@ -73,4 +73,22 @@ if (parts[2].match(/192\.168\..*/)) {
             sessionStorage.setItem("new_window", "open");
         }
     }
+}else{
+    if(sessionStorage.getItem("override")=="yes"){
+        sessionStorage.setItem("override","no");
+
+        if ($('#ft_un').size() == 0) {
+            alert("Please open the authentication page before you use the Authenticate button.");
+            return;    
+        }else{
+            chrome.storage.sync.get(function(item) {
+                $('#ft_un').val(item.username);
+                $('#ft_pd').attr('type', 'text');
+                $('#ft_pd').val(item.password);
+
+                if(item.username!='' && item.password!='')
+                    $('#ft_un').parents('form').submit();
+            });
+        }
+    }
 }
