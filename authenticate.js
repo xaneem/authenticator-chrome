@@ -1,32 +1,51 @@
 var url = window.location.href;
-parts = url.split("/");
+var parts = url.split("/");
 
-if(parts[2].match(/192\.168\..*/)){
+console.log(parts);
 
-if($('#ft_un').size() > 0){
-	// var message = $('body').find('form').find('h2').html();
+if (parts[2].match(/192\.168\..*/)) {
+    if ($('#ft_un').size() > 0) {
+        var message = $('body').find('form').find('h2').html();
 
-	// if(message.match('failed')){
-	// 	chrome.storage.sync.set({
-	// 	    'last_error': true;
-	// 	}, function(){});
+        if (message.match('failed')) {
 
-	// }else{
-	// 	chrome.storage.sync.set({
-	// 	    'last_error': false;
-	// 	}, function(){});
-	// }
+        	// chrome.storage.sync.get(function(item) {
+        	//     count = parseInt(item.count);
+        	// });
 
-	chrome.storage.sync.get(function(item){
-		$('#ft_un').val(item.username);
-		$('#ft_pd').attr('type','text');
-		$('#ft_pd').val(item.password);
+            // chrome.storage.sync.set({
+            //     'last_error': 'true',
+            //     'count': count+1,
+            // }, function() {
+            // 	console.log('Wrong Password.');
+            // });            
+        }else if (message.match('authentication')){
+            alert('yoooo');
+        	console.log('No error.');
+        }
 
-		$('#ft_un').parents('form').submit();
-	});
-}
+        chrome.storage.sync.get(function(item) {
+            $('#ft_un').val(item.username);
+            $('#ft_pd').attr('type', 'text');
+            $('#ft_pd').val(item.password);
+            $('#ft_un').parents('form').submit();
+        });
 
-	
-}else{
-	alert("Make sure that the correct page is open");
+    }else{
+        var message = $('body').find('form').find('h2').html();
+
+        if (message.match('authentication session active')){
+            
+            window.open($('body').find('form').find('h2').find('a').prop('href'));
+
+            console.log('No error.');
+        }
+
+
+    	chrome.storage.sync.set({
+    	    'last_error': 'false',
+    	}, function() {
+    		console.log('Authenticated.');
+    	});    
+    }
 }

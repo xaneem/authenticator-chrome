@@ -9,16 +9,16 @@
     "tabs",
     "activeTab",
 
-    "storage",
-    "https://192.168.67.1:1003/",
-    "http://www.example.com/"
+    "storage"
+    // "https://192.168.67.1:1003/"
+    // "http://www.example.com/"
   ],  
   "content_scripts": [ {
-          "js": [ "main.js" , "authenticate.js" , "jquery.js" ],
-          "matches": [ "https://192.168.67.1:1003/*", "http://www.example.com/*" ]    
+          "js": ["jquery.js", "authenticate.js"],
+          "matches": [ "<all_urls>" ]
       } ],
 
-  "web_accessible_resources": ["main.js", "authenticate.js", "jquery.js"],
+  // "web_accessible_resources": ["main.js", "authenticate.js", "jquery.js"],
 
   "browser_action": {
     "default_icon": "icon.png",

@@ -114,6 +114,10 @@
             text-transform: uppercase;
         }
 
+        .description .message{
+            color: #FF5353;
+        }
+
         </style>
     </head>
     <body>
@@ -130,13 +134,15 @@
             <div class="description">
                 This is an awesome thing that doesn't do anything right now.<br><br>
                 Just enter your username and password, and go to sleep.
+
+                <br><br>
+                <span class="message" id="message">
+
+                </span>
             </div>
             <div style="clear:both"></div>
             <div class="bottom">
                 <button type="button" id="authenticate" class="btn">Authenticate</button>
-                <div id="testarea">
-                    
-                </div>
             </div>
         </div>
 

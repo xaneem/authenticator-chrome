@@ -3,7 +3,10 @@ $(function() {
     chrome.storage.sync.get(function(item){
         $('#username').val(item.username);
         $('#password').val(item.password);
-    	// $('#testarea').html(item.last_error);
+
+        if(item.last_error == 'true'){
+            $('#message').html("The last attempt failed due to invalid username/password.");
+        }   	
     });
 
     function saveChanges() {
@@ -12,7 +15,8 @@ $(function() {
 
         chrome.storage.sync.set({
             'username': username,
-            'password': password
+            'password': password,
+            'count': '0',
         }, function() {
             $('#submit').removeClass('submit').addClass('success');
             $('#submit').html('SAVED');
