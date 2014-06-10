@@ -28,6 +28,8 @@
 
     "browser_action": {
         "default_icon": "icon48.png",
+        "default_title": "NITC Authenticator",
         "default_popup": "authenticate.html"
     }
+
 }
