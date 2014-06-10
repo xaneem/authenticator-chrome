@@ -18,7 +18,7 @@
         "matches": ["<all_urls>"]
     }],
 
-    // "web_accessible_resources": ["main.js", "authenticate.js", "jquery.js"],
+    "web_accessible_resources": ["authenticate.js", "jquery.js"],
     
     "icons": {
         "16": "icon16.png",
