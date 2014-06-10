@@ -1,51 +1,76 @@
 var url = window.location.href;
 var parts = url.split("/");
 
-console.log(parts);
-
 if (parts[2].match(/192\.168\..*/)) {
     if ($('#ft_un').size() > 0) {
         var message = $('body').find('form').find('h2').html();
 
         if (message.match('failed')) {
 
-        	// chrome.storage.sync.get(function(item) {
-        	//     count = parseInt(item.count);
-        	// });
+            if(sessionStorage.getItem("fail")>3){
 
-            // chrome.storage.sync.set({
-            //     'last_error': 'true',
-            //     'count': count+1,
-            // }, function() {
-            // 	console.log('Wrong Password.');
-            // });            
-        }else if (message.match('authentication')){
-            alert('yoooo');
-        	console.log('No error.');
+                chrome.storage.sync.get(function(item) {
+                    $('#ft_un').val(item.username);
+                    $('#ft_pd').attr('type', 'text');
+                    $('#ft_pd').val(item.password);
+                });
+
+                if(sessionStorage.getItem("override")){
+                    if(sessionStorage.getItem("override")!="yes"){
+                        return;
+                    }
+                }else{
+                    return;
+                }
+               
+                sessionStorage.setItem("override","no");
+            }
+
+            var fail = sessionStorage.getItem("fail");
+
+            if(isNaN(parseInt(fail)))
+                fail = 0;
+            else
+                fail = parseInt(fail);
+
+            fail++;
+            
+            sessionStorage.setItem("fail", fail);
+            
+            chrome.storage.sync.set({
+                'last_error': 'true'
+            }, function() {
+            	//Wrong Password.
+            });            
         }
 
         chrome.storage.sync.get(function(item) {
             $('#ft_un').val(item.username);
             $('#ft_pd').attr('type', 'text');
             $('#ft_pd').val(item.password);
-            $('#ft_un').parents('form').submit();
+
+            if(item.username!='' && item.password!='')
+                $('#ft_un').parents('form').submit();
         });
 
     }else{
         var message = $('body').find('form').find('h2').html();
 
         if (message.match('authentication session active')){
+
+            chrome.storage.sync.set({
+                'last_error': 'false'
+            }, function() {
+                //Authenticated
+            });   
+
+            sessionStorage.setItem("fail", 0);
+
+            if(sessionStorage.getItem("new_window")=="open")
+                return;
             
             window.open($('body').find('form').find('h2').find('a').prop('href'));
-
-            console.log('No error.');
+            sessionStorage.setItem("new_window", "open");
         }
-
-
-    	chrome.storage.sync.set({
-    	    'last_error': 'false',
-    	}, function() {
-    		console.log('Authenticated.');
-    	});    
     }
 }

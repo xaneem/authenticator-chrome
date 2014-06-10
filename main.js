@@ -6,7 +6,7 @@ $(function() {
 
         if(item.last_error == 'true'){
             $('#message').html("The last attempt failed due to invalid username/password.");
-        }   	
+        }
     });
 
     function saveChanges() {
@@ -16,7 +16,6 @@ $(function() {
         chrome.storage.sync.set({
             'username': username,
             'password': password,
-            'count': '0',
         }, function() {
             $('#submit').removeClass('submit').addClass('success');
             $('#submit').html('SAVED');
@@ -38,7 +37,16 @@ $(function() {
     $('#authenticate').on('click', function(event) {
         event.preventDefault();
 
-        chrome.tabs.executeScript(null, {file: "jquery.js"});
-        chrome.tabs.executeScript(null, {file: "authenticate.js"});
+        chrome.tabs.executeScript(null, {
+            file: "jquery.js"
+        });
+
+        chrome.tabs.executeScript({
+            code: 'sessionStorage.setItem("override", "yes")'
+        });
+
+        chrome.tabs.executeScript(null, {
+            file: "authenticate.js"
+        });
     });
 });
