@@ -7,7 +7,7 @@ if (parts[2].match(/192\.168\..*/)) {
 
         if (message.match('failed')) {
 
-            if(sessionStorage.getItem("fail")>3){
+            if(sessionStorage.getItem("fail")>2){
 
                 chrome.storage.sync.get(function(item) {
                     $('#ft_un').val(item.username);

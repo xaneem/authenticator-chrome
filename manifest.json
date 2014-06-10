@@ -1,27 +1,33 @@
 {
-  "manifest_version": 2,
+    "manifest_version": 2,
 
-  "name": "Authenticator",
-  "description": "This extension lets you authenticate your connection with username and password. Built for use in NIT Calicut.",
-  "version": "0.1",
+    "name": "NITC Authenticator",
+    "short_name": "NITC-Auth",
+    "description": "This extension lets you authenticate your connection with username and password. Built for use in NIT Calicut.",
+    "version": "0.1",
 
-  "permissions": [
-    "tabs",
-    "activeTab",
+    "permissions": [
+        "tabs",
+        "activeTab",
+        // "notifications",
+        // "background",
+        "storage"
+    ],
+    "content_scripts": [{
+        "js": ["jquery.js", "authenticate.js"],
+        "matches": ["<all_urls>"]
+    }],
 
-    "storage"
-    // "https://192.168.67.1:1003/"
-    // "http://www.example.com/"
-  ],  
-  "content_scripts": [ {
-          "js": ["jquery.js", "authenticate.js"],
-          "matches": [ "<all_urls>" ]
-      } ],
+    // "web_accessible_resources": ["main.js", "authenticate.js", "jquery.js"],
+    
+    "icons": {
+        "16": "icon16.png",
+        "48": "icon48.png",
+        "128": "icon128.png"
+    },
 
-  // "web_accessible_resources": ["main.js", "authenticate.js", "jquery.js"],
-
-  "browser_action": {
-    "default_icon": "icon.png",
-    "default_popup": "authenticate.html"
-  }
+    "browser_action": {
+        "default_icon": "icon48.png",
+        "default_popup": "authenticate.html"
+    }
 }

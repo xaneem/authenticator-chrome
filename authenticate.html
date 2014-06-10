@@ -12,7 +12,7 @@
             margin: 0;
             min-width: 550px;
             overflow-x: hidden;
-            font-family: 'Verdana', sans-serif;
+            font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
             font-size: 1em;
         }
 
@@ -30,18 +30,14 @@
         }
         .description{
             float: left;
-            width: 180px;
+            width: 200px;
             margin: 40px 20px 20px;
             padding: 10px;
 
             line-height: 20px;
-            font-size: 0.9em;
+            font-size: 0.8em;
         }
 
-        .bottom{
-            margin: 20px;
-            padding: 10px;
-        }
         #main-form label+input{
             display: block;
         }
@@ -136,20 +132,20 @@
                     <input type="text" name="password" id="password">
                     <button type="button" id="submit" class="submit">Save Credentials</button>
                 </form>
+                
+                <div style="height:60px;"></div>
+                <button type="button" id="authenticate" class="btn">Authenticate</button>
             </div>
             <div class="description">
-                Save your username and password, and you will be authenticated automatically when the page shows up.<br><br>
+                <img src="logo.png" width="150" height="150"><br>
+                Save your username and password. You will be authenticated automatically.<br><br>
 
-                If it does not work, try the authenticate button manually after opening the page.
+                If it does not work, try the <strong>Authenticate</strong> button manually after opening the page.
                 <br><br>
                 <span class="message" id="message">
-
                 </span>
             </div>
             <div style="clear:both"></div>
-            <div class="bottom">
-                <button type="button" id="authenticate" class="btn">Authenticate</button>
-            </div>
         </div>
 
     </body>
