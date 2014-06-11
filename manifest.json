@@ -3,14 +3,12 @@
 
     "name": "NITC Authenticator",
     "short_name": "NITC-Auth",
-    "description": "This extension lets you authenticate your connection with username and password. Built for use in NIT Calicut.",
-    "version": "0.1",
+    "description": "Authenticate your LAN internet connection automatically using this extension. Built for use in NIT Calicut.",
+    "version": "0.5",
 
     "permissions": [
         "tabs",
         "activeTab",
-        // "notifications",
-        // "background",
         "storage"
     ],
     "content_scripts": [{
@@ -19,7 +17,7 @@
     }],
 
     "web_accessible_resources": ["authenticate.js", "jquery.js"],
-    
+
     "icons": {
         "16": "icon16.png",
         "48": "icon48.png",
@@ -31,5 +29,4 @@
         "default_title": "NITC Authenticator",
         "default_popup": "authenticate.html"
     }
-
 }
