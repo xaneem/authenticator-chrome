@@ -1,3 +1,5 @@
+window.ondragstart = function() { return false; } 
+
 $(function() {
 
     chrome.storage.sync.get(function(item){
@@ -32,6 +34,7 @@ $(function() {
         event.preventDefault();
         saveChanges();
 
+        return false;
     });
 
     $('#authenticate').on('click', function(event) {
