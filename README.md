@@ -17,6 +17,9 @@ We felt we were spending too much "productive" time on typing in the username an
 
 If you think something is missing, feel free to develop. We love pull requests.
 
+Check out the NITC Authenticator [Firefox Add-on](https://github.com/ajnas/authenticator-firefox) too!
+
+
 License
 -------
 MIT License
