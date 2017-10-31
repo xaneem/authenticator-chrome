@@ -1,12 +1,12 @@
-window.ondragstart = function() { return false; } 
+window.ondragstart = function() { return false; }
 
 $(function() {
 
-    chrome.storage.sync.get(function(item){
+    chrome.storage.sync.get(function(item) {
         $('#nitc_username').val(item.username);
         $('#nitc_password').val(item.password);
 
-        if(item.last_error == 'true'){
+        if (item.last_error == 'true') {
             $('#nitc_message').html("The last attempt failed, probably due to an invalid username/password.");
         }
     });
@@ -22,10 +22,10 @@ $(function() {
             $('#nitc_submit').removeClass('submit').addClass('success');
             $('#nitc_submit').html('SAVED');
 
-            setTimeout(function(){
+            setTimeout(function() {
                 $('#nitc_submit').removeClass('success').addClass('submit');
                 $('#nitc_submit').html('Save Credentials');
-            },1000);
+            }, 1000);
         });
     }
 
@@ -39,7 +39,7 @@ $(function() {
 
     $('#nitc_authenticate').on('click', function(event) {
         event.preventDefault();
-        
+
         saveChanges();
 
         chrome.tabs.executeScript(null, {
